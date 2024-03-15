@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 const connectDB = async() => {
     try {
 
-        const coon = await mongoose.connect(process.env.MONGO_URI);
+        const coon = await mongoose.connect("mongodb+srv://codepulsedb:codepulsedb@codepulse.39hny9u.mongodb.net/?retryWrites=true&w=majority&appName=codepulse" );
         console.log("Mongodb is connected");
 
     } catch (error) {

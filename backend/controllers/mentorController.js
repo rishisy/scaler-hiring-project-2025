@@ -1,6 +1,5 @@
 import asyncHandler from 'express-async-handler';
 import Student from '../models/studentModel.js';
-import { Evaluation} from '../models/evaluationModel.js';
 import Mentor from '../models/mentorModel.js';
 import { Error } from 'mongoose';
 
