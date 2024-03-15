@@ -5,53 +5,6 @@ import Mentor from '../models/mentorModel.js';
 import { Error } from 'mongoose';
 
 
-// just for reference
-` import mongoose from 'mongoose';
-
-const evaluationSchema = new mongoose.Schema({
-  evaluation_room: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'EvaluationRoom',
-    required: true
-  },
-  student: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Student',
-    required: true
-  },
-  mentor: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Mentor',
-  },
-  ideation_score: {
-    default: 0,
-    type: Number,
-    required: true
-  },
-  execution_score: {
-    default: 0,
-    type: Number,
-    required: true
-  },
-  viva_score: {
-    default: 0,
-    type: Number,
-    required: true
-  },
-  is_finalized: {
-    type: Boolean,
-    default: false
-  },
-  total_score: {
-    type: Number,
-    default: 0
-  }
-});
-
-`
-
-
-
 
 
 
@@ -157,7 +110,8 @@ const deleteStudentFromEvaluationRoom = asyncHandler(async (req, res) => {
 const setStudentEvaluationScore = asyncHandler(async (req, res) => {
     try {
         const { student_id, ideation_score, execution_score, viva_score } = req.body;
-        const mentor = req.user._id;
+        const mentor = req.body.mentor;
+
         const evaluationRoom = await EvaluationRoom.findOne({ mentor    });
         if ( evaluationRoom === null) {
             res.status(404);
@@ -165,17 +119,24 @@ const setStudentEvaluationScore = asyncHandler(async (req, res) => {
         }
         // check if student is set to not evaluated
         const student = await Student.findById(student_id);
-        if (student.evaluation_status === 'not_evaluated') {
+        console.log(student);
+        if (student.evaluation_status === 'evaluated') {
             res.status(400);
-            throw new Error('Student not evaluated');
+            throw new Error('Student already evaluated');
         }
-        const evaluation = await Evaluation.findOne({ student_id: student_id });
+        // creating evaluation for student
+        const evaluation = new Evaluation({
+            evaluation_room: evaluationRoom._id,
+            mentor: mentor,
+            student: student_id
+        });
+
         evaluation.ideation_score = ideation_score;
         evaluation.execution_score = execution_score;
         evaluation.viva_score = viva_score;
         evaluation.total_score = ideation_score + execution_score + viva_score;
         await evaluation.save();
-        res.status(201).json(evaluation);
+        res.status(200).json(evaluation);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Error setting student evaluation score' });

@@ -1,7 +1,7 @@
 import Navigation from'./Navbar.jsx'
 import HomePage from './HomePage.jsx'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-
+import EvaluationPage from './EvaluationPage.jsx'
 const About = () => {
   return (
     <div>
@@ -28,8 +28,8 @@ const App = () => {
         <Navigation />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={ <EvaluationPage /> } />
+          <Route path="/contact" element={ <Contact /> } />
         </Routes>
       </div>
     </Router>
