@@ -17,10 +17,7 @@ const mentorSchema  = mongoose.Schema({
         type:String,
        // minlength:6
     },
-    projects: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Project"
-              }],
+
 },
 
 

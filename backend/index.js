@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import {notFound , errorHandler } from './middleware/errorMiddleware.js';
 import cors from 'cors';
 import connectDB from './config/db.js';
+import studentRoutes from './routes/mentorRoutes.js';
 
 dotenv.config() ;
 
@@ -17,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended : true}));
 app.use(cookieParser());
 app.use(errorHandler);
-//app.use('/api/students' , studentRoutes );
+app.use('/api/students' , studentRoutes );
 
 
 app.get('/' , (req,res) => res.send('Server is Ready now'));
