@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import Student from '../models/studentModel.js';
-import Evaluation from '../models/evaluationModel.js';
+import { Evaluation} from '../models/evaluationModel.js';
 import Mentor from '../models/mentorModel.js';
 import { Error } from 'mongoose';
 
@@ -8,17 +8,6 @@ import { Error } from 'mongoose';
 const getStudents = asyncHandler(async (req, res) => {
     try {
         const students = await Student.find({});
-
-        for (const student of students){
-
-            if  (student.evaluation_status === 'evaluated') {
-
-                const evaluation = await Evaluation.findOne({ student_id: student._id });
-                student.evaluation = evaluation;
-            }
-
-        }
-
         res.status(200).json(students);
     } catch (error) {
         console.error(error);

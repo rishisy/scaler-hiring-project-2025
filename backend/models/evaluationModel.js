@@ -16,14 +16,17 @@ const evaluationSchema = new mongoose.Schema({
     ref: 'Mentor',
   },
   ideation_score: {
+    default: 0,
     type: Number,
     required: true
   },
   execution_score: {
+    default: 0,
     type: Number,
     required: true
   },
   viva_score: {
+    default: 0,
     type: Number,
     required: true
   },
@@ -37,6 +40,26 @@ const evaluationSchema = new mongoose.Schema({
   }
 });
 
-const Evaluation = mongoose.model('Evaluation', evaluationSchema);
 
-export default Evaluation;
+const evaluationRoomSchema = new mongoose.Schema({
+  mentor: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Mentor',
+    required: true
+  },
+  is_open: {
+    type: Boolean,
+    default:false
+  }
+});
+
+
+const Evaluation = mongoose.model('Evaluation', evaluationSchema);
+const EvaluationRoom = mongoose.model('EvaluationRoom', evaluationRoomSchema);
+
+
+
+
+export { Evaluation, EvaluationRoom };
+
+

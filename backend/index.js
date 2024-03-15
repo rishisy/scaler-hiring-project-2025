@@ -5,7 +5,7 @@ import {notFound , errorHandler } from './middleware/errorMiddleware.js';
 import cors from 'cors';
 import connectDB from './config/db.js';
 import studentRoutes from './routes/mentorRoutes.js';
-
+import evaluationRoutes from './routes/evaluationRoutes.js';
 dotenv.config() ;
 
 const port = process.env.PORT || 4080;
@@ -19,6 +19,7 @@ app.use(express.urlencoded({extended : true}));
 app.use(cookieParser());
 app.use(errorHandler);
 app.use('/api/students' , studentRoutes );
+app.use('/api/eval' , evaluationRoutes );
 
 
 app.get('/' , (req,res) => res.send('Server is Ready now'));

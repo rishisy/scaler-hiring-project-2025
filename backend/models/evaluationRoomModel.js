@@ -9,7 +9,7 @@ const evaluationRoomSchema = new mongoose.Schema({
   },
   is_open: {
     type: Boolean,
-    default: true
+    default:false
   }
 });
 
@@ -17,4 +17,4 @@ const evaluationRoomSchema = new mongoose.Schema({
 const EvaluationRoom = mongoose.model('EvaluationRoom', evaluationRoomSchema);
 
 export default EvaluationRoom;
-
+// Path: evaluationRoomModel.js
