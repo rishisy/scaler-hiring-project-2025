@@ -10,7 +10,12 @@ const evaluationRoomSchema = new mongoose.Schema({
   is_open: {
     type: Boolean,
     default:false
-  }
+  },
+    student_count: {
+    type: Number,
+    default: 0
+    }
+
 });
 
 
