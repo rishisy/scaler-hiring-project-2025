@@ -19,7 +19,7 @@ const batchCreateStudents = asyncHandler(async (req, res) => {
 
     try {
         // display amount of fake dummy students to batchCreateStudents
-        const amount = req.body.amount;
+        const amount = req.query.amount;
 
         if (!amount) {
             res.status(400);
@@ -53,7 +53,7 @@ const batchCreateMentors = asyncHandler(async (req, res) => {
 
     try {
         // display amount of fake dummy students to batchCreateStudents
-        const amount = req.body.amount;
+        const amount = req.query.amount;
 
         if (!amount) {
             res.status(400);
