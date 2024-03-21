@@ -2,35 +2,41 @@ import Navigation from'./Navbar.jsx'
 import HomePage from './HomePage.jsx'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import EvaluationPage from './EvaluationPage.jsx'
-const About = () => {
-  return (
-    <div>
-      <h1>About Us</h1>
-      {/* ... About content */}
-    </div>
-  );
-};
+import AuthContextProvider from './contexts/authContext.jsx';
+import RoomContextProvider from "./contexts/RoomContext";
+import Students from './Students.jsx';
+import Room from './Room.jsx';
 
-const Contact = () => {
-  return (
-    <div>
-      <h1>Contact Us</h1>
-      {/* ... Contact form, etc. */}
-    </div>
-  );
-};
+
 
 // App component with routing
 const App = () => {
   return (
     <Router>
       <div>
+      <AuthContextProvider>
+        <RoomContextProvider>
+      
         <Navigation />
+        <br></br>
+
+
+        {/* Routes */}
+
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={ <EvaluationPage /> } />
-          <Route path="/contact" element={ <Contact /> } />
+          <Route path="/evaluation" element={ <EvaluationPage /> } />
+          <Route path="/students" element={ <Students /> } />
+          <Route path="/room" element={ <Room /> } />
         </Routes>
+
+        {/* Routes */}
+
+
+
+
+      </RoomContextProvider>
+      </AuthContextProvider>
       </div>
     </Router>
   );

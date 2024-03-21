@@ -8,7 +8,7 @@ import studentRoutes from './routes/mentorRoutes.js';
 import evaluationRoutes from './routes/evaluationRoutes.js';
 dotenv.config() ;
 
-const port = process.env.PORT || 4080;
+const port = process.env.PORT || 4040;
 
 connectDB();
 

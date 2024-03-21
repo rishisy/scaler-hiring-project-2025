@@ -3,6 +3,11 @@ import { Card, Col, Modal, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 
 function StudentCard({ student }) {
+
+
+
+
+
   const [show, setShow] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [ideation_score, setIdeationScore] = useState(student.ideation_score || 0); // Initialize with default or student value

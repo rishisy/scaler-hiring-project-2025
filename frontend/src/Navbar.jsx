@@ -3,28 +3,22 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { AuthContext } from './contexts/authContext.jsx';
+import { useContext } from 'react';
 
 function Navigation() {
+    const {user} = useContext(AuthContext);
+
   return (
-    <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+    <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary"  bg="dark" data-bs-theme="dark" >
       <Container>
-        <Navbar.Brand href="#home">Dashboard</Navbar.Brand>
+        <Navbar.Brand href="/">Dashboard</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/about">Evaluation</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-            <NavDropdown title="Dropdown" id="collapsible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link href="/students">Students</Nav.Link>
+            <Nav.Link href="/room">Evaluation Room</Nav.Link>
+            <Nav.Link href="">Logged : {user.user_name }</Nav.Link>
           </Nav>
           <Nav>
             <Nav.Link href="#deets">Start Evaluation </Nav.Link>
